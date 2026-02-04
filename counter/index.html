@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <style>
+      .count {
+        font-size: 60px;
+      }
+    </style>
+    <title>counter</title>
+  </head>
+  <body>
+    <main>
+      <div class="conatiner">
+        <p>Counter</p>
+        <span class="count">0</span>
+
+        <div class="btns">
+          <button class="btn increase">increase</button>
+          <button class="btn reset">reset</button>
+          <button class="btn decrease">decrease</button>
+        </div>
+      </div>
+    </main>
+
+    <script>
+      let c = 0;
+      const count = document.querySelector('.count');
+      const btns = document.querySelectorAll('.btn');
+
+      btns.forEach((btn) => {
+        btn.addEventListener('click', (e) => {
+          const styles = e.target.classList;
+
+          if (styles.contains('increase')) {
+            c++;
+          } else if (styles.contains('reset')) {
+            c = 0;
+          } else if (styles.contains('decrease')) {
+            c--;
+          }
+
+          if (c > 0) {
+            count.style.color = 'green';
+          } else if (c < 0) {
+            count.style.color = 'red';
+          } else if (c == 0) {
+            count.style.color = 'black';
+          }
+          count.innerText = c;
+        });
+      });
+    </script>
+  </body>
+</html>

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <style>
+      .hide{
+        content-visibility: hidden;
+      }
+    </style>
+    <title>navbar</title>
+  </head>
+  <body>
+    <nav>
+      <div>
+        <div>
+          <img src="" alt="img" />
+          <button class="btn">||</button>
+        </div>
+      </div>
+      <div class="links hide">
+      <ul>
+        <li>
+          <a href="">Home</a>
+        </li>
+        <li>
+          <a href="">About</a>
+        </li>
+        <li>
+          <a href="">Project</a>
+        </li>
+        <li>
+          <a href="">Contact</a>
+        </li>
+      </ul>
+    </div>
+    </nav>
+    
+
+
+    <script>
+        const btn=document.querySelector('.btn');
+        const links =document.querySelector('.hide');
+        btn.addEventListener('click',(e)=>{
+
+            links.classList.toggle('hide');
+        })
+    </script>
+  </body>
+</html>
