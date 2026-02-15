@@ -41,3 +41,13 @@
     justify-content: space-around;
     padding: 18px;
 }
+
+.weatherScreen{
+    display: none;
+}
+
+.error{
+    text-align: left;
+    margin-left: 10px;
+    display: none;
+}
