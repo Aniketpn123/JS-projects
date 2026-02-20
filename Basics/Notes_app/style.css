@@ -1,0 +1,10 @@
+body{
+    height: 100vh;
+    background: linear-gradient(135deg , red,blue);
+}
+
+.notes{
+    height: 200px ;
+    width: 300px;
+    background: white;
+}
