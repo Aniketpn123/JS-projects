@@ -1,10 +1,71 @@
-body{
-    height: 100vh;
-    background: linear-gradient(135deg , red,blue);
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
 }
 
-.notes{
-    height: 200px ;
-    width: 300px;
-    background: white;
+body{
+    background: linear-gradient(136deg, red , blue);
+    height: 100vh;
+    width: 100%;
+}
+
+.notes-app{
+  background-color: rgb(154, 226, 202);
+  display: flex;
+  flex-direction: column;
+  width: 80%;
+  margin: auto;
+  margin-top: 50px;
+  align-items: center;
+  padding: 10px;
+}
+
+/* create notes btn */
+
+.create-notes{
+   display: flex;
+   background-color: rgb(252, 149, 149);
+   padding: 10px;
+   align-items: center;
+   width: 50%;
+   justify-content: center;
+}
+
+.create-notes img{
+    width: 20%;
+}
+.create-notes p{
+    font-size: 18px;
+    color: yellow;
+}
+
+/* notes shows */
+
+.notes-container{
+    display: flex;
+   background-color: rgb(255, 191, 191);
+   padding: 10px;
+   align-items: center;
+   width: 100%;
+   justify-content: center;
+   margin-top: 30px;
+}
+
+.note{
+   background: wheat;
+   width: 90%;
+   position: relative;
+   height: 150px;
+   padding: 10px;
+   outline: none;
+   border: 2px solid black;
+   margin: 20px;
+}
+
+.note img{
+    width: 20px;
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
 }
