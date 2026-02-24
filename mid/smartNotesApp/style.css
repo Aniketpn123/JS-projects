@@ -1,0 +1,68 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body{
+
+}
+
+.container{
+    background: linear-gradient(45deg, red ,blue);
+    width: 80%;
+    height: 80vh;
+    margin: auto;
+    margin-top: 50px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.create-notes{
+    margin-top: 50px;
+    display: flex;
+    align-items: center;
+}
+.create-notes img{
+    width: 54px;
+    margin: 10px;
+    border: 0;
+    border-radius: 20px;
+}
+.create-notes button{
+    font-size: 24px;
+    font-weight: 500;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    padding: 10px;
+    outline: none;
+    border: 0;
+    border-radius: 20px;
+}
+
+
+/* notes lists */
+.notes-list{
+    background: linear-gradient(45deg , red , white);
+    width: 80%;
+    height: 60vh;
+}
+
+.note{
+  background:linear-gradient(45deg , white,yellow);
+  margin: 20px;
+  position: relative;
+  height: 200px;
+  padding: 20px;
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  font-size: 16px;
+  border-radius: 28px;
+}
+
+.note img{
+    width: 24px;
+    position: absolute;
+    right: 24px;
+    top: 18px;
+    box-shadow: 2px 2px 2px 2px rgb(190, 186, 186);
+}
