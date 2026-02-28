@@ -6,62 +6,59 @@
 
 body{
 
+ background: linear-gradient(45deg,red,white);
 }
 
+/* notes home page */
+
+
 .container{
-    background: linear-gradient(45deg, red ,blue);
-    margin: auto;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    height: 100vh;
+    background: beige;
+    position: absolute;
 }
 
 .create-notes{
-    margin-top: 50px;
-    display: flex;
-    align-items: center;
+ display: flex;
+ justify-content:space-around;
+ align-items: center;
 }
 .create-notes img{
-    width: 54px;
-    margin: 10px;
-    border: 0;
-    border-radius: 20px;
+    width: 48px;
+    border-radius: 50%;
 }
-.create-notes button{
-    font-size: 24px;
-    font-weight: 500;
-    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-    padding: 10px;
-    outline: none;
-    border: 0;
-    border-radius: 20px;
+
+.add-btn{
+    position: relative;
+    border-radius: 50%;
+}
+
+.add{
+    position: absolute;
+    background: black;
+}
+.line1{
+   width: 100%;
+   height: 2px;
+   top: 50%;
+}
+.line2{
+    width: 2px;
+    height: 100%;
+    right: 50%;
 }
 
 
-/* notes lists */
-.notes-list{
-    background: linear-gradient(45deg , red , white);
-    width: 80%;
+
+/* notes shows display  */
+
+
+.notes-list{ 
 }
 
 .note{
-  background:linear-gradient(45deg , white,yellow);
-  margin: 20px;
-  position: relative;
-  height: 200px;
-  padding: 20px;
-  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-  font-size: 16px;
-  border-radius: 28px;
-  overflow:auto;
+    background: white;
 }
 
 .note img{
-    width: 24px;
-    position: absolute;
-    right: 24px;
-    top: 18px;
-    box-shadow: 2px 2px 2px 2px rgb(190, 186, 186);
+    width: 20px;
 }
-
