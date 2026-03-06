@@ -49,13 +49,14 @@ noteList.addEventListener('keyup',()=>{
 })
 
 
-
+color =["white", "lightblue", "lightgreen","green","red","violet","silver"];
 // note background change
 noteList.addEventListener('click',(e)=>{
-    if(e.target.classList.contains("btn")){
-         e.target.closest('.note').style.color=white;
-    }
-   savedata();
+    if(e.target.classList.contains('btn')){
+        let index = Math.floor(Math.random() * color.length);
+        e.target.parentElement.style.backgroundColor = color[index];
+    }   
+    savedata();                      
 })
 
    

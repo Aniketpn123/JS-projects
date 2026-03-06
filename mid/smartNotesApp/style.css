@@ -77,9 +77,11 @@ body{
     position: relative;
     margin: auto;
     padding: 18px;
-    width: 500px;
+    width: 80%;
+    max-width: 500px;
     height: 100px;
 }
+
 
 .note img{
     width: 24px;
@@ -88,9 +90,11 @@ body{
     bottom: 10px;
 }
 
-/* .note button{
+.note button{
     position: absolute;
     top:4px;
     right: 12px;
-    padding: 4px;
-} */
+    padding: 2px;
+    margin: 10px 0px;
+    border-radius: 50%;
+}
