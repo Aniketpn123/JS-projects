@@ -59,4 +59,6 @@ noteList.addEventListener('click',(e)=>{
     savedata();                      
 })
 
-   
+
+  //  drag notes
+
