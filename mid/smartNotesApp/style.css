@@ -81,9 +81,8 @@ body{
     width: 80%;
     max-width: 500px;
     height: 100px;
-    cursor: pointer;
+    cursor: grab;
     overflow:auto;
-    position: absolute;
 }
 
 .note::-webkit-scrollbar

@@ -1,0 +1,51 @@
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+body{
+    display: flex;
+    flex-direction: column;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif,Arial, Helvetica, sans-serif;
+}
+.container{
+    width: 100%;
+    height: 100vh;
+    background:linear-gradient(45deg , red , white);
+    text-align: center;
+    padding: 2rem;
+}
+
+
+/* city enter */
+
+.info{
+    padding: 30px 20px;
+    width: 40%;
+    margin: auto;
+    min-height: 100px;
+    display: flex;
+    gap: 10px;
+}
+
+#city{
+    border: none;
+    width: 100%;
+    outline: none;
+    font-size: 18px;
+    border-radius: 18px;
+    font-family: 'Times New Roman', Times, serif;
+    padding: 10px 20px;
+    text-align: center;
+    background-color: beige;
+}
+
+#enter{
+    border: none;
+    border-radius: 50%;
+    padding: 10px;
+    font-weight: 700;
+    background: rgb(172, 240, 26);
+    color: rgb(59, 58, 54);
+}
