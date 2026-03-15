@@ -49,3 +49,15 @@ body{
     background: rgb(172, 240, 26);
     color: rgb(59, 58, 54);
 }
+
+ /* display */
+
+ .display{
+    font-size: 18px;
+    background: linear-gradient(60deg , rgb(181, 163, 163) , rgb(243, 174, 174));
+    width: 60%;
+    margin: auto;
+    height: 200px;
+    padding: 10px;
+    border-radius: 20px;
+ }
