@@ -6,12 +6,19 @@ async function weatherApp(params) {
   display.innerHTML = "Loading weather...";
   let url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&appid=${key}`;
 
+   
   try {
     let response = await fetch(url);
     let data = await response.json();
+    console.log(data);
+    
 
     display.innerHTML = `<p class="cityName">${data.name}</p>
-          <p class="temp">${data.main.temp} °C</p>`;
+          <p class="temp">${data.main.temp} °C</p>
+          <p class="temp">${data.wind.speed} km/h</p>
+          <p class="temp">${data.weather[0].main} </p>
+          <p class="temp">${data.sys.country}</p>`;
+          
   }catch (err) {
 
   if (err.message.includes("")) {
