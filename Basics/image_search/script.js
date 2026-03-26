@@ -1,7 +1,7 @@
 const accessKey ="47wlmeE8m7g8MFMhkCuClv6dZot3buexLgjsT6ay_5Q";
 const inputField = document.getElementById('input-field');
 const searchBar = document.getElementById('search-bar');
-
+const imageResult = document.getElementById('result');
 let keyword ="";
 let page =1;
 async function searchImg() {
@@ -12,6 +12,9 @@ async function searchImg() {
     const response = await fetch(url);
     const data = await response.json();
    
+    if(page === 1){
+        imageResult.innerHTML='';
+    }
 
     const results = data.results;
     results.map((result)=>{
@@ -21,7 +24,7 @@ async function searchImg() {
         imagelink.href = result.links.html;
         imagelink.target="_blank";
         imagelink.appendChild(image);
-        
+        imageResult.appendChild(imagelink);
     })
 
 }

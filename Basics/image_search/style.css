@@ -46,3 +46,15 @@ form button{
     border: 0;
     display: none;
 }
+
+#result{
+    display: grid;
+    width: 80%;
+    gap: 10px;
+    grid-template-columns: 1fr 1fr 1f 1fr;
+    margin-top: 50px;
+}
+
+#result img{
+    
+}
