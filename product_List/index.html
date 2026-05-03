@@ -23,31 +23,9 @@
     </style>
   </head>
   <body>
-    <div>
-      <div class="result"></div>
-    </div>
 
     <script>
-      let result = document.querySelector(".result");
-      async function getData() {
-        try {
-          const response = await fetch("https://dummyjson.com/products");
-          const data = await response.json();
-          data.products.map((p) => {
-            result.innerHTML += `
-      <div class="product">
-        <h3>${p.title}</h3>
-        <img src="${p.thumbnail}" width="100"/>
-        <p>${p.price} rs</p>
-      </div>
-    `;
-          });
-        } catch (error) {
-          new Error(console.log("not working"));
-        }
-      }
-
-      getData();
+  
     </script>
   </body>
 </html>
