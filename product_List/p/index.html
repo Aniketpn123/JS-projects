@@ -1,0 +1,42 @@
+git<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Product List</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <div class="container">
+    <div class="header">
+      <h1>🛍️ Product List</h1>
+      <p class="subtitle">Using <code>map()</code>, <code>filter()</code> and <code>sort()</code></p>
+    </div>
+
+    <!-- Search & Sort -->
+    <div class="controls">
+      <input type="text" id="searchInput" placeholder="🔍 Search products..." />
+      <select id="sortSelect">
+        <option value="default">Sort: Default</option>
+        <option value="price-asc">Price: Low to High</option>
+        <option value="price-desc">Price: High to Low</option>
+        <option value="name-asc">Name: A to Z</option>
+        <option value="name-desc">Name: Z to A</option>
+        <option value="rating-desc">Rating: Best First</option>
+      </select>
+    </div>
+
+    <!-- Category Filter -->
+    <div class="category-filter" id="catFilter"></div>
+
+    <!-- Stats -->
+    <div class="stats" id="stats"></div>
+
+    <!-- Product Grid -->
+    <div class="grid" id="grid"></div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

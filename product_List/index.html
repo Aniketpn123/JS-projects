@@ -23,9 +23,52 @@
     </style>
   </head>
   <body>
+    <p>product list</p>
+    <div>
+      <label for="product">product name</label>
+      <input type="text" id="product" placeholder="search by name" />
+      <button onclick="itemSearch()">search</button>
+    </div>
+    <div id="products"></div>
 
     <script>
-  
+      let products = document.getElementById("products");
+      let product = document.getElementById("product").value;
+      let productlist = [
+        {
+          id: 1,
+          name: "cooker",
+          price: 20,
+        },
+        {
+          id: 2,
+          name: "plates",
+          price: 100,
+        },
+      ];
+
+      function renderList() {
+        for (let item of productlist) {
+          let p = document.createElement("p");
+          let li = document.createElement("li");
+          p.innerText = item.name;
+          li.innerText = item.price;
+          products.appendChild(p);
+          products.appendChild(li);
+        }
+      }
+      renderList();
+
+      function itemSearch() {
+        let value = product.tolowercase();
+        for (let item of productlist) {
+          if (item.name === value) {
+            console.log(value);
+          }
+        }
+      }
     </script>
+
+   
   </body>
 </html>

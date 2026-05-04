@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Product List</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: #f4f6f9;
+      color: #222;
+      min-height: 100vh;
+      padding: 2rem 1rem;
+    }
+
+    .container { max-width: 1100px; margin: 0 auto; }
+
+    h1 {
+      font-size: 28px;
+      font-weight: 600;
+      margin-bottom: 6px;
+    }
+
+    .subtitle {
+      color: #666;
+      font-size: 15px;
+      margin-bottom: 1.5rem;
+    }
+
+    /* Controls */
+    .controls {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-bottom: 1rem;
+    }
+
+    .controls input {
+      flex: 1;
+      min-width: 200px;
+      padding: 10px 14px;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      font-size: 15px;
+      outline: none;
+      background: #fff;
+    }
+
+    .controls input:focus { border-color: #4a90e2; }
+
+    .controls select {
+      padding: 10px 14px;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      font-size: 15px;
+      background: #fff;
+      cursor: pointer;
+      outline: none;
+    }
+
+    /* Category Buttons */
+    .category-filter {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      margin-bottom: 1rem;
+    }
+
+    .cat-btn {
+      padding: 6px 16px;
+      border-radius: 20px;
+      border: 1px solid #ccc;
+      background: #fff;
+      font-size: 13px;
+      cursor: pointer;
+      transition: all 0.2s;
+      color: #555;
+    }
+
+    .cat-btn:hover { border-color: #4a90e2; color: #4a90e2; }
+
+    .cat-btn.active {
+      background: #4a90e2;
+      border-color: #4a90e2;
+      color: #fff;
+      font-weight: 600;
+    }
+
+    /* Stats */
+    .stats {
+      font-size: 14px;
+      color: #777;
+      margin-bottom: 1.2rem;
+    }
+
+    .stats span { font-weight: 600; color: #333; }
+
+    /* Grid */
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+      gap: 16px;
+    }
+
+    /* Card */
+    .card {
+      background: #fff;
+      border-radius: 12px;
+      border: 1px solid #e5e7eb;
+      padding: 1.2rem;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      transition: box-shadow 0.2s, transform 0.2s;
+    }
+
+    .card:hover {
+      box-shadow: 0 4px 16px rgba(0,0,0,0.08);
+      transform: translateY(-2px);
+    }
+
+    .badge {
+      display: inline-block;
+      font-size: 11px;
+      font-weight: 600;
+      padding: 3px 10px;
+      border-radius: 20px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      width: fit-content;
+    }
+
+    .badge-tech     { background: #dbeafe; color: #1d4ed8; }
+    .badge-fashion  { background: #fce7f3; color: #9d174d; }
+    .badge-sports   { background: #fef3c7; color: #92400e; }
+    .badge-home     { background: #dcfce7; color: #166534; }
+
+    .card-name {
+      font-size: 16px;
+      font-weight: 600;
+      color: #111;
+    }
+
+    .card-price {
+      font-size: 20px;
+      font-weight: 700;
+      color: #2563eb;
+    }
+
+    .card-rating {
+      font-size: 13px;
+      color: #777;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+    }
+
+    .stars { color: #f59e0b; font-size: 13px; }
+
+    .card-desc {
+      font-size: 13px;
+      color: #666;
+      line-height: 1.6;
+    }
+
+    /* Empty State */
+    .empty {
+      grid-column: 1 / -1;
+      text-align: center;
+      padding: 4rem 1rem;
+      color: #999;
+      font-size: 16px;
+    }
+
+    .empty span { font-size: 40px; display: block; margin-bottom: 12px; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>🛍️ Product List</h1>
+    <p class="subtitle">Search, filter by category, and sort products using <code>map</code>, <code>filter</code>, and <code>sort</code></p>
+
+    <!-- Search & Sort Controls -->
+    <div class="controls">
+      <input type="text" id="searchInput" placeholder="🔍 Search products..." oninput="render()" />
+      <select id="sortSelect" onchange="render()">
+        <option value="default">Sort: Default</option>
+        <option value="price-asc">Price: Low to High</option>
+        <option value="price-desc">Price: High to Low</option>
+        <option value="name-asc">Name: A to Z</option>
+        <option value="name-desc">Name: Z to A</option>
+        <option value="rating-desc">Rating: Best First</option>
+      </select>
+    </div>
+
+    <!-- Category Filter Buttons -->
+    <div class="category-filter" id="catFilter"></div>
+
+    <!-- Result Stats -->
+    <div class="stats" id="stats"></div>
+
+    <!-- Product Grid -->
+    <div class="grid" id="grid"></div>
+  </div>
+
+  <script>
+    // ─── Product Data ────────────────────────────────────────────────
+    const products = [
+      { id: 1,  name: "Wireless Headphones",  price: 2999,  rating: 4.5, category: "Tech",    desc: "Noise-cancelling, 30hr battery, premium sound." },
+      { id: 2,  name: "Running Shoes",         price: 3499,  rating: 4.3, category: "Sports",  desc: "Lightweight foam sole, breathable mesh upper." },
+      { id: 3,  name: "Cotton T-Shirt",        price: 599,   rating: 4.1, category: "Fashion", desc: "100% organic cotton, available in 12 colors." },
+      { id: 4,  name: "Smart Watch",           price: 7999,  rating: 4.7, category: "Tech",    desc: "Health tracking, GPS, 7-day battery life." },
+      { id: 5,  name: "Yoga Mat",              price: 1299,  rating: 4.4, category: "Sports",  desc: "Non-slip, 6mm thick, eco-friendly material." },
+      { id: 6,  name: "Denim Jacket",          price: 2499,  rating: 4.2, category: "Fashion", desc: "Classic fit, stone-washed denim, durable." },
+      { id: 7,  name: "Table Lamp",            price: 1799,  rating: 4.0, category: "Home",    desc: "Adjustable brightness, USB charging port." },
+      { id: 8,  name: "Bluetooth Speaker",     price: 1999,  rating: 4.6, category: "Tech",    desc: "360° sound, waterproof, 12hr playtime." },
+      { id: 9,  name: "Cookware Set",          price: 4999,  rating: 4.5, category: "Home",    desc: "Non-stick coating, oven safe, 8-piece set." },
+      { id: 10, name: "Football",              price: 899,   rating: 4.2, category: "Sports",  desc: "Size 5, match quality, textured grip." },
+      { id: 11, name: "Sunglasses",            price: 1599,  rating: 4.3, category: "Fashion", desc: "UV400 protection, polarized lenses." },
+      { id: 12, name: "Air Purifier",          price: 8999,  rating: 4.8, category: "Home",    desc: "HEPA filter, quiet mode, covers 400 sq ft." },
+    ];
+
+    // ─── Categories ──────────────────────────────────────────────────
+    const categories = ["All", "Tech", "Fashion", "Sports", "Home"];
+    let activeCategory = "All";
+
+    // Build category buttons
+    const catFilter = document.getElementById("catFilter");
+    categories.forEach(cat => {
+      const btn = document.createElement("button");
+      btn.className = "cat-btn" + (cat === "All" ? " active" : "");
+      btn.textContent = cat;
+      btn.onclick = () => {
+        activeCategory = cat;
+        document.querySelectorAll(".cat-btn").forEach(b => b.classList.remove("active"));
+        btn.classList.add("active");
+        render();
+      };
+      catFilter.appendChild(btn);
+    });
+
+    // ─── Star Rating Helper ──────────────────────────────────────────
+    function getStars(rating) {
+      const full = Math.floor(rating);
+      const half = rating % 1 >= 0.5 ? 1 : 0;
+      const empty = 5 - full - half;
+      return "★".repeat(full) + (half ? "⯨" : "") + "☆".repeat(empty);
+    }
+
+    // ─── Main Render Function ────────────────────────────────────────
+    function render() {
+      const query = document.getElementById("searchInput").value.toLowerCase().trim();
+      const sort  = document.getElementById("sortSelect").value;
+
+      // ── 1. FILTER by category ──────────────────────────────────────
+      const byCategory = products.filter(p =>
+        activeCategory === "All" || p.category === activeCategory
+      );
+
+      // ── 2. FILTER by search query ──────────────────────────────────
+      const searched = byCategory.filter(p =>
+        p.name.toLowerCase().includes(query) ||
+        p.desc.toLowerCase().includes(query) ||
+        p.category.toLowerCase().includes(query)
+      );
+
+      // ── 3. SORT ────────────────────────────────────────────────────
+      const sorted = [...searched].sort((a, b) => {
+        if (sort === "price-asc")   return a.price - b.price;
+        if (sort === "price-desc")  return b.price - a.price;
+        if (sort === "name-asc")    return a.name.localeCompare(b.name);
+        if (sort === "name-desc")   return b.name.localeCompare(a.name);
+        if (sort === "rating-desc") return b.rating - a.rating;
+        return a.id - b.id;
+      });
+
+      // ── 4. MAP to HTML cards ───────────────────────────────────────
+      const cards = sorted.map(p => `
+        <div class="card">
+          <span class="badge badge-${p.category.toLowerCase()}">${p.category}</span>
+          <div class="card-name">${p.name}</div>
+          <div class="card-price">₹${p.price.toLocaleString("en-IN")}</div>
+          <div class="card-rating">
+            <span class="stars">${getStars(p.rating)}</span>
+            ${p.rating} / 5
+          </div>
+          <div class="card-desc">${p.desc}</div>
+        </div>
+      `);
+
+      // ── 5. Update DOM ──────────────────────────────────────────────
+      document.getElementById("stats").innerHTML =
+        `Showing <span>${sorted.length}</span> of <span>${products.length}</span> products`;
+
+      const grid = document.getElementById("grid");
+      grid.innerHTML = cards.length
+        ? cards.join("")
+        : `<div class="empty"><span>🔍</span>No products match your search.</div>`;
+    }
+
+    // Initial render
+    render();
+  </script>
+</body>
+</html>
